@@ -1,5 +1,8 @@
 import org.assertj.core.api.Assertions;
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 /**
  * Created by davids on 23/02/2017.
@@ -7,11 +10,27 @@ import org.junit.Test;
 public class GroceryStoreTest {
 
 
+    private LoyaltyCard testCard;
+    private GroceryStore testStore;
+    private Customer testCustomer;
+    private String barCode;
+    private String anotherBarCode;
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
+    @Before
+    public void setUp() throws Exception {
+        barCode = "15156454";
+        anotherBarCode = "546879546";
+        testCard = new LoyaltyCard(barCode, 0);
+        testStore = new GroceryStore();
+        testCustomer = new Customer(testCard);
+
+    }
+
     @Test
     public void addNewCustomer() throws Exception {
-        LoyaltyCard testCard = new LoyaltyCard("15156454", 0);
-        Customer testCustomer = new Customer(testCard, "David");
-        GroceryStore testStore = new GroceryStore();
         testStore.addNewCustomer(testCustomer);
 
         Assertions.assertThat(testStore.getCustomerList()).contains(testCustomer);
@@ -19,20 +38,24 @@ public class GroceryStoreTest {
 
     @Test
     public void customerListDoesNotContainNotAddedCustomers() throws Exception {
-        LoyaltyCard testCard = new LoyaltyCard("15156454", 0);
-        GroceryStore testStore = new GroceryStore();
-        Customer testCustomer = new Customer(testCard, "David");
-
         Assertions.assertThat(testStore.getCustomerList()).doesNotContain(testCustomer);
     }
 
     @Test
     public void searchCustomerByBarcode() throws Exception {
-        LoyaltyCard testCard = new LoyaltyCard("15156454", 0);
-        GroceryStore testStore = new GroceryStore();
-        Customer testCustomer = new Customer(testCard, "David");
         testStore.addNewCustomer(testCustomer);
 
-        Assertions.assertThat(testStore.searchCustomerByBarcode("15156454")).isEqualTo(testCustomer);
+        Assertions.assertThat(testStore.searchCustomerByBarcode(barCode)).isEqualTo(testCustomer);
+    }
+
+    @Test
+    public void searchCustomer_ForNonExcistentBarcodeThrows() throws Exception {
+
+        expectedException.expectMessage("Customer not found");
+        expectedException.expect(Exception.class);
+
+        testStore.addNewCustomer(testCustomer);
+
+        Assertions.assertThat(testStore.searchCustomerByBarcode(anotherBarCode)).isEqualTo(testCustomer);
     }
 }
