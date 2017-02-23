@@ -22,14 +22,14 @@ public class GroceryStore {
 
     public Customer searchCustomerByBarcode(String barcode) throws Exception {
         for (Customer customer : customerList) {
-            if (barcodesMatch(barcode, customer)) {
+            if (barcodeMatches(barcode, customer)) {
                 return customer;
             }
         }
         throw new Exception("Customer not found");
     }
 
-    private boolean barcodesMatch(String barcode, Customer customer) {
+    private boolean barcodeMatches(String barcode, Customer customer) {
         return customer.getLoyaltyCard().getBarcode().equals(barcode);
     }
 }
