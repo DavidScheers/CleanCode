@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.util.Map;
+
 /**
  * Created by davids on 23/02/2017.
  */
@@ -5,6 +8,7 @@ public class Customer {
 
     private LoyaltyCard loyaltyCard;
     private String name;
+    private Map<LocalDate, Groceries> groceriesMap;
 
     public Customer(LoyaltyCard loyaltyCard, String name) {
         this.loyaltyCard = loyaltyCard;
@@ -18,4 +22,6 @@ public class Customer {
     public String getName() {
         return name;
     }
+
+
 }
