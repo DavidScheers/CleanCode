@@ -16,6 +16,7 @@ public class Groceries {
         return shoppingCart;
     }
 
+
     public void addToShoppingCart(String item, int quantity) {
         if (itemIsAlreadyInShoppingCart(item)) {
             updateAmount(item, quantity);

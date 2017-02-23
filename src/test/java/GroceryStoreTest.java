@@ -8,8 +8,6 @@ import org.junit.rules.ExpectedException;
  * Created by davids on 23/02/2017.
  */
 public class GroceryStoreTest {
-
-
     private LoyaltyCard testCard;
     private GroceryStore testStore;
     private Customer testCustomer;
@@ -58,4 +56,5 @@ public class GroceryStoreTest {
 
         Assertions.assertThat(testStore.searchCustomerByBarcode(anotherBarCode)).isEqualTo(testCustomer);
     }
+
 }
