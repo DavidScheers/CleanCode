@@ -1,4 +1,4 @@
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +9,7 @@ public class Customer {
 
     private LoyaltyCard loyaltyCard;
     private String name;
-    private Map<LocalDate, Groceries> groceriesMap;
+    private Map<LocalDateTime, Groceries> groceriesMap;
 
     public Customer(LoyaltyCard loyaltyCard, String name) {
         this.loyaltyCard = loyaltyCard;
@@ -23,6 +23,10 @@ public class Customer {
 
     public String getName() {
         return name;
+    }
+
+    public Map<LocalDateTime, Groceries> getGroceriesMap() {
+        return groceriesMap;
     }
 
 

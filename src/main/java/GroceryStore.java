@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,5 +34,14 @@ public class GroceryStore {
 
     private boolean barcodeMatches(String barcode, Customer customer) {
         return customer.getLoyaltyCard().getBarcode().equals(barcode);
+    }
+
+    public List<Groceries> getAllGroceriesFromCustomerOfCertainDate (Customer customer, LocalDate day){
+
+        for (LocalDateTime dateTime:customer.getGroceriesMap().keySet())
+        {
+            if (dateTime.toLocalDate() == day)
+                
+        };
     }
 }
