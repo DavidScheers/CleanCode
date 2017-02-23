@@ -18,8 +18,9 @@ public class Groceries {
 
     public void buyItem(String item, int quantity) {
         if (shoppingCart.containsKey(item)) {
-            
+            shoppingCart.put(item, shoppingCart.get(item) + quantity);
+        }else {
+            shoppingCart.put(item, quantity);
         }
-        shoppingCart.put(item, quantity);
     }
 }
