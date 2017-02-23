@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,6 +14,7 @@ public class Customer {
     public Customer(LoyaltyCard loyaltyCard, String name) {
         this.loyaltyCard = loyaltyCard;
         this.name = name;
+        groceriesMap = new HashMap<>();
     }
 
     public LoyaltyCard getLoyaltyCard() {
